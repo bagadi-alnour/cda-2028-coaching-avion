@@ -1,5 +1,8 @@
 package frames;
 
+
+import menu.Menu;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -9,16 +12,20 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class MainFrame extends JFrame implements KeyListener {
+    menu.Menu menu;
     private JPanel avionPanel;
     private final int WIDTH = 400;
     private final int HEIGHT = 800;
 
+
     public MainFrame() throws IOException {
+        menu = new Menu();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(WIDTH, HEIGHT);
         setResizable(false);
         setLocationRelativeTo(null);
         addKeyListener(this);
+
 
         setTitle("Main frame");
         try {
@@ -38,7 +45,9 @@ public class MainFrame extends JFrame implements KeyListener {
 
         avionPanel.setBounds(90, 90, 110, 110);
         getContentPane().add(avionPanel);
+        setJMenuBar(menu.getjMenuBar());
         setVisible(true);
+
 
 
     }
