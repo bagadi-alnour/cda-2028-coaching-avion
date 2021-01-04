@@ -1,5 +1,6 @@
 package frames;
 
+
 import menu.Menu;
 
 import javax.imageio.ImageIO;
@@ -11,7 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class MainFrame extends JFrame implements KeyListener {
-    Menu menu;
+    menu.Menu menu;
     private JPanel avionPanel;
     private final int WIDTH = 400;
     private final int HEIGHT = 800;
@@ -44,8 +45,7 @@ public class MainFrame extends JFrame implements KeyListener {
 
         avionPanel.setBounds(90, 90, 110, 110);
         getContentPane().add(avionPanel);
-        setJMenuBar(this.menu.getjMenuBar());
-
+        setJMenuBar(menu.getjMenuBar());
         setVisible(true);
 
 

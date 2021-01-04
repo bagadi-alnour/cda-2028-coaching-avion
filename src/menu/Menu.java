@@ -1,63 +1,72 @@
 package menu;
-
 import javax.swing.*;
-import java.awt.*;
+import java.awt.event.KeyEvent;
 
-public class Menu {
-        private JMenuBar jMenuBar;
-        private  JMenu gameMenu;
-        private  JMenuItem newGame;
-        private  JMenuItem pause;
-        private  JMenuItem exit;
+public class Menu  {
 
-        private  JMenu history;
-        private  JMenuItem showHistory;
-
-        private  JMenu about;
-        private  JMenuItem showAbout;
-
+    private JMenuBar jMenuBar;
+    private JMenu game;
+    private JMenuItem newGame;
+    private JMenuItem pause;
+    private JMenuItem exit;
+    private JMenu history;
+    private JMenuItem showHistory;
+    private JMenu help;
+    private JMenuItem Instructions;
+    private JMenu about;
+    private JMenuItem aboutUS;
 
     public Menu() {
-        jMenuBar = new JMenuBar();
+        this.jMenuBar = new JMenuBar();
+        this.game = new JMenu("Game");
+        this.newGame = new JMenuItem("New Game");
+        this.pause = new JMenuItem("Pause");
+        this.exit= new JMenuItem("Exit");
+        this.history = new JMenu("History");
+        this.showHistory= new JMenuItem("Show history");
+        this.help  = new JMenu("Help");
+        this.Instructions= new JMenuItem("Instructions");
+        this.about  = new JMenu("About");
+        this.aboutUS= new JMenuItem("About as");
 
-        gameMenu = new JMenu();
-        newGame = new JMenuItem("new Game");
-        pause = new JMenuItem("Pause");
-        exit = new JMenuItem("Exit");
+        newGame.setMnemonic(KeyEvent.VK_N);
+        pause.setMnemonic(KeyEvent.VK_P);
+        exit.setMnemonic(KeyEvent.VK_X);
+        help.setMnemonic(KeyEvent.VK_H);
 
-        history = new JMenu();
-        showHistory = new JMenuItem("Show history");
-
-        about = new JMenu();
-        showAbout = new JMenuItem("Show About");
-
-        gameMenu.add(newGame);
-        gameMenu.add(pause);
-        gameMenu.add(exit);
+        game.add(newGame);
+        game.add(pause);
+        game.add(exit);
 
         history.add(showHistory);
+        help.add(Instructions);
+        about.add(aboutUS);
 
-        about.add(showAbout);
 
-        jMenuBar.add(gameMenu);
+        jMenuBar.add(game);
         jMenuBar.add(history);
+        jMenuBar.add(help);
         jMenuBar.add(about);
-
-
-
-
-
-
-
     }
-
 
     public JMenuBar getjMenuBar() {
         return jMenuBar;
     }
 
-    public JMenu getGameMenu() {
-        return gameMenu;
+    public JMenu getGame() {
+        return game;
+    }
+
+    public JMenu getHistory() {
+        return history;
+    }
+
+    public JMenu getHelp() {
+        return help;
+    }
+
+    public JMenu getAbout() {
+        return about;
     }
 
     public JMenuItem getNewGame() {
@@ -72,19 +81,15 @@ public class Menu {
         return exit;
     }
 
-    public JMenu getHistory() {
-        return history;
-    }
-
     public JMenuItem getShowHistory() {
         return showHistory;
     }
 
-    public JMenu getAbout() {
-        return about;
+    public JMenuItem getInstructions() {
+        return Instructions;
     }
 
-    public JMenuItem getShowAbout() {
-        return showAbout;
+    public JMenuItem getAboutUS() {
+        return aboutUS;
     }
 }
