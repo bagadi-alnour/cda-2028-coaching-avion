@@ -1,4 +1,5 @@
 package menu;
+
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 
@@ -57,18 +58,6 @@ public class Menu  {
         return game;
     }
 
-    public JMenu getHistory() {
-        return history;
-    }
-
-    public JMenu getHelp() {
-        return help;
-    }
-
-    public JMenu getAbout() {
-        return about;
-    }
-
     public JMenuItem getNewGame() {
         return newGame;
     }
@@ -81,12 +70,24 @@ public class Menu  {
         return exit;
     }
 
+    public JMenu getHistory() {
+        return history;
+    }
+
     public JMenuItem getShowHistory() {
         return showHistory;
     }
 
+    public JMenu getHelp() {
+        return help;
+    }
+
     public JMenuItem getInstructions() {
         return Instructions;
+    }
+
+    public JMenu getAbout() {
+        return about;
     }
 
     public JMenuItem getAboutUS() {

@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class MainFrame extends JFrame implements KeyListener {
     menu.Menu menu;
+
     private JPanel avionPanel;
     private final int WIDTH = 400;
     private final int HEIGHT = 800;
@@ -46,6 +47,7 @@ public class MainFrame extends JFrame implements KeyListener {
         avionPanel.setBounds(90, 90, 110, 110);
         getContentPane().add(avionPanel);
         setJMenuBar(menu.getjMenuBar());
+
         setVisible(true);
 
 
