@@ -1,30 +1,42 @@
 package frames;
 
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import entite.MeteoriteRed;
-import entite.MeteoriteWhite;
 import menu.Menu;
 
-public class MainFrame extends JFrame implements KeyListener {
+public class MainFrame extends JFrame implements KeyListener, ActionListener, Runnable {
 
-	private static final long serialVersionUID = 1L;
-	menu.Menu menu;
+//    ArrayList<Meteorites> ball
+    Rectangle rectangleWhite = new Rectangle();
+    Rectangle rectangleRed = new Rectangle();
+    JLabel redball;
+    JLabel whiteball;
+    Meteorites meteorites = new Meteorites();
+    boolean exit;
+    int pixelPerSec = 5;
+    private int ballX = 0;
+    private int ballY = 0;
+    private static final long serialVersionUID = 1L;
+    menu.Menu menu;
     private JPanel avionPanel;
     private final int WIDTH = 400;
     private final int HEIGHT = 800;
+    private int score = 0;
+
     public MainFrame() throws IOException {
         menu = new Menu();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -41,35 +53,33 @@ public class MainFrame extends JFrame implements KeyListener {
         // Add plane to jframe
         this.avionPanel = new JPanel() {
 
-			private static final long serialVersionUID = 1L;
-			BufferedImage image = ImageIO.read(MainFrame.class.getResource("/img/f15.png"));
+            private static final long serialVersionUID = 1L;
+            BufferedImage image = ImageIO.read(MainFrame.class.getResource("/img/f15.png"));
+
             @Override
             public void paintComponent(Graphics g) {
                 g.drawImage(this.image, 0, 0, this.getWidth(), this.getHeight(), null);
             }
         };
-        int positionAvionDepartX = MainFrame.this.getWidth()/2 -60;
-        int positionAvionDepartY =  MainFrame.this.getHeight()- 220;
+        int positionAvionDepartX = MainFrame.this.getWidth() / 2 - 60;
+        int positionAvionDepartY = MainFrame.this.getHeight() - 220;
         avionPanel.setBounds(positionAvionDepartX, positionAvionDepartY, 110, 110);
         getContentPane().add(avionPanel);
         setJMenuBar(menu.getjMenuBar());
-//      setLayout(null);
-        MeteoriteRed redBall = new MeteoriteRed(0, 0, 0, 0);
-        redBall.setBounds(0, 0, 110, 220);
-        redBall.setForeground(new Color(255,0,128));
-        add(redBall);
+
+
+        redball = meteorites.create("redball", "/img/red-rock.jpg", 30, 30, true);
+        add(redball);
+
+        whiteball = meteorites.create("whiteball", "/img/red-rock.jpg", 30, 30, true);
+        add(whiteball);
         setVisible(true);
-        // *****************
-        MeteoriteWhite whiteBall = new MeteoriteWhite(0, 0, 0, 0);
-        whiteBall.setBounds(400, 0, 110, 220);
-        whiteBall.setForeground(new Color(255,0,128));
-        add(whiteBall);
-        setVisible(true);
-        
     }
+
     @Override
     public void keyTyped(KeyEvent e) {
     }
+
     // control the image of plane
     @Override
     public void keyPressed(KeyEvent e) {
@@ -94,7 +104,71 @@ public class MainFrame extends JFrame implements KeyListener {
             avionPanel.setLocation(avionPanel.getX() + xDirection, avionPanel.getY() + yDirection);
         }
     }
+
     @Override
     public void keyReleased(KeyEvent e) {
+    }
+
+
+    @Override
+    public void run() {
+        int randomRed = new Random().nextInt(this.WIDTH -100);
+        int randomWhite = new Random().nextInt(this.WIDTH -100);
+        while (!exit) {
+            try {
+                this.pixelPerSec+=5;
+                if ((this.redball.getY() - this.redball.getHeight()) <getHEIGHT()){
+                    this.redball.setLocation(randomRed, this.ballY + this.pixelPerSec);
+                    this.whiteball.setLocation(randomWhite, this.ballY + this.pixelPerSec);
+                } else {
+                    // les impacts
+                    System.out.println("je sors de boocle");
+                    this.exit = true;
+            }
+
+
+//                if ((this.redball.getY() - 100) > MainFrame.this.getHeight()) {
+//                    this.redball.setVisible(false);
+//                    System.out.println("je suis ivisable");
+//                }
+            Thread.sleep(50);
+        } catch(InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+}
+
+    public int getPixelPerSec() {
+        return pixelPerSec;
+    }
+
+    public int getBallX() {
+        return ballX;
+    }
+
+    public void setBallX(int ballX) {
+        this.ballX = ballX;
+    }
+
+    public int getBallY() {
+        return ballY;
+    }
+
+    public void setBallY(int ballY) {
+        this.ballY = ballY;
+    }
+
+    public int getWIDTH() {
+        return WIDTH;
+    }
+
+    public int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }

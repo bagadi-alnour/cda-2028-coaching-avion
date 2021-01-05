@@ -9,7 +9,6 @@ public abstract class Meteorite extends JPanel {
 	
 	
 	public Meteorite(int x, int y, int widthPicture , int heightPicture) {
-		
 		this.x = x;
 		this.y = y;
 		this.widthPicture = widthPicture;
