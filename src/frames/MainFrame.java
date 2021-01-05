@@ -65,6 +65,7 @@ public class MainFrame extends JFrame implements KeyListener {
         whiteBall.setForeground(new Color(255,0,128));
         add(whiteBall);
         setVisible(true);
+        
     }
     @Override
     public void keyTyped(KeyEvent e) {
