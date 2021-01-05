@@ -1,6 +1,5 @@
 package entite;
 
-import java.awt.Color;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -12,8 +11,8 @@ public class MeteoriteRed extends Meteorite {
 	private ImageIcon icoMeteoriteRed;
 	private JLabel imageMeteoriteRed = new JLabel();
 	
-	public MeteoriteRed(int x, int y, int heightPicture, int weightPicture) {
-		super(x, y, heightPicture, weightPicture);
+	public MeteoriteRed(int x, int y, int widthPicture , int heightPicture) {
+		super(x, y, widthPicture, heightPicture);
 		this.icoMeteoriteRed = new ImageIcon(getClass().getResource("/img/red-rock.jpg"));
 
 		imageMeteoriteRed.setIcon(icoMeteoriteRed);
@@ -23,7 +22,6 @@ public class MeteoriteRed extends Meteorite {
 	}
 
 	public  Image getImgMeteoriteRed() {return imgMeteoriteRed;}
-	
-	
+		
 
 }

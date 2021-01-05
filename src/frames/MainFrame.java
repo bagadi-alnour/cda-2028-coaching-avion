@@ -1,20 +1,24 @@
 package frames;
 
 
-import menu.Menu;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import entite.MeteoriteRed;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import entite.MeteoriteRed;
+import menu.Menu;
 
 public class MainFrame extends JFrame implements KeyListener, ActionListener {
     menu.Menu menu;
@@ -36,7 +40,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 
         setTitle("Main frame");
         try {
-            setContentPane(new JLabel(new ImageIcon(ImageIO.read(MainFrame.class.getResource("/img/skyTile.jpg")))));
+            setContentPane(new JLabel(new ImageIcon(ImageIO.read(MainFrame.class.getResource("/img/background-space.gif")))));
         } catch (IOException e) {
         	System.out.println("Erreur lors du chargement Background image dans la MainFrame");
             
@@ -53,7 +57,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 
         int positionAvionDepartX = MainFrame.this.getWidth()/2 -60;
         int positionAvionDepartY =  MainFrame.this.getHeight()- 220;
-        avionPanel.setBounds(positionAvionDepartX, positionAvionDepartY, 110, 110);
+        avionPanel.setBounds(positionAvionDepartX, positionAvionDepartY, 80, 80);
 
         getContentPane().add(avionPanel);
         setJMenuBar(menu.getjMenuBar());
@@ -66,7 +70,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 
 //      setLayout(null);
         MeteoriteRed redBall = new MeteoriteRed(0, 0, 0, 0);
-        redBall.setBounds(0, 0, 110, 220);
+        redBall.setBounds(0, 0, 50, 50);
         redBall.setForeground(new Color(255,0,128));
         add(redBall);
         setVisible(true);
