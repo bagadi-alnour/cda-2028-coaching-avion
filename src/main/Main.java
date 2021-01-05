@@ -10,5 +10,10 @@ public class Main {
 
         MainFrame mainFrame = new MainFrame();
 
+     //   new MeteoriteRed(150, 250, 400, 600);
+       
+
+
+
     }
 }
