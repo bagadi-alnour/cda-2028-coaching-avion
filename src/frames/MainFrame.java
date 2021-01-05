@@ -6,12 +6,14 @@ import menu.Menu;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class MainFrame extends JFrame implements KeyListener {
+public class MainFrame extends JFrame implements KeyListener, ActionListener {
     menu.Menu menu;
 
     private JPanel avionPanel;
@@ -26,8 +28,6 @@ public class MainFrame extends JFrame implements KeyListener {
         setResizable(false);
         setLocationRelativeTo(null);
         addKeyListener(this);
-
-
         setTitle("Main frame");
         try {
             setContentPane(new JLabel(new ImageIcon(ImageIO.read(MainFrame.class.getResource("/img/bg.jpg")))));
@@ -47,12 +47,16 @@ public class MainFrame extends JFrame implements KeyListener {
         avionPanel.setBounds(90, 90, 110, 110);
         getContentPane().add(avionPanel);
         setJMenuBar(menu.getjMenuBar());
-
+        menu.getNewGame().addActionListener(this);
+        menu.getPause().addActionListener(this);
+        menu.getExit().addActionListener(this);
+        menu.getShowHistory().addActionListener(this);
+        menu.getInstructions().addActionListener(this);
+        menu.getAboutUS().addActionListener(this);
         setVisible(true);
-
-
-
     }
+
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -85,5 +89,26 @@ public class MainFrame extends JFrame implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == menu.getNewGame()) {
+            System.out.println("new game started..");
+        } else if (e.getSource() == menu.getExit()) {
+            System.exit(0);
+        } else if (e.getSource() == menu.getShowHistory()) {
+            JOptionPane.showMessageDialog(null,
+                    "Afficher l'historique du jeu ici" +
+                    JOptionPane.PLAIN_MESSAGE);
+        }  else if (e.getSource() == menu.getInstructions()) {
+            JOptionPane.showMessageDialog(null,
+                    "Expliquer comment on peut jeuer ici" +
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        }  else if (e.getSource() == menu.getAboutUS()) {
+            JOptionPane.showMessageDialog(null,
+                    " qui sommes nous ici" +
+                    JOptionPane.PLAIN_MESSAGE);
+        }
     }
 }

@@ -65,7 +65,7 @@ public class Menu  {
     public JMenuItem getPause() {
         return pause;
     }
-
+    
     public JMenuItem getExit() {
         return exit;
     }
