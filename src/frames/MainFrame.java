@@ -22,6 +22,8 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
     private JPanel avionPanel;
     private final int WIDTH = 400;
     private final int HEIGHT = 800;
+    private int positionAvionDebutX = this.getWidth()/2- 60;
+    private int positionAvionDebutY = this.getHeight()/2 +220;
 
 
     public MainFrame() throws IOException {
@@ -31,24 +33,28 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
         setResizable(true);
         setLocationRelativeTo(null);
         addKeyListener(this);
+
         setTitle("Main frame");
         try {
             setContentPane(new JLabel(new ImageIcon(ImageIO.read(MainFrame.class.getResource("/img/skyTile.jpg")))));
         } catch (IOException e) {
-            e.printStackTrace();
+        	System.out.println("Erreur lors du chargement Background image dans la MainFrame");
+            
         }
         // Add plane to jframe
         this.avionPanel = new JPanel() {
             BufferedImage image = ImageIO.read(MainFrame.class.getResource("/img/f15.png"));
-
+            
             @Override
             public void paintComponent(Graphics g) {
                 g.drawImage(this.image, 0, 0, this.getWidth(), this.getHeight(), null);
             }
         };
+
         int positionAvionDepartX = MainFrame.this.getWidth()/2 -60;
         int positionAvionDepartY =  MainFrame.this.getHeight()- 220;
         avionPanel.setBounds(positionAvionDepartX, positionAvionDepartY, 110, 110);
+
         getContentPane().add(avionPanel);
         setJMenuBar(menu.getjMenuBar());
         menu.getNewGame().addActionListener(this);
@@ -66,6 +72,15 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
         setVisible(true);
     }
 
+
+
+  
+    
+    private void defilementBackground() {
+    	
+    }
+    
+    //Listener Clavier
 
     @Override
     public void keyTyped(KeyEvent e) {
